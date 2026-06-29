@@ -1,0 +1,17 @@
+# Secret keys — NEVER upload these
+.env
+
+# Python environment — too large to upload
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# ChromaDB — rebuilt from your PDF locally
+chroma_db/
+
+# Your personal notes PDF
+*.pdf
+
+# Mac junk
+.DS_Store 

@@ -7,9 +7,11 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from memory import load_progress, save_progress, show_progress, alread_mastered
 from rag import load_pdf_to_chroma, get_vectorstore, search_notes
 from eval import evaluate_lesson, save_eval, show_eval_summary
+from langgraph.checkpoint.memory import MemorySaver
+from langgraph.types import interrupt
 
 load_dotenv()
-
+checkpointer = MemorySaver()
 
 llm = ChatGoogleGenerativeAI(
     google_api_key=os.environ.get("GEMINI_API_KEY"),
@@ -82,7 +84,8 @@ def quiz_node(state: StudyState) -> StudyState:
     question = llm.invoke(q_prompt).content
     state["question"] = question
     #print(f"\nQuiz Question: {question}")
-    user_answer = input("Your Answer: ")
+    # user_answer = input("Your Answer: ")
+    user_answer = interrupt({"question": question})
     state["user_answer"] = user_answer
     grade_prompt = f"""Question:{question} Student's answer: {user_answer}. Is this correct?. Reply with 'Correct' or 'Incorrect', then one sentence of feedback."""
     feedback = llm.invoke(grade_prompt).content
@@ -119,7 +122,7 @@ graph.set_entry_point("planner")
 graph.add_edge("planner", "teacher")
 graph.add_edge("teacher", "quiz")
 graph.add_conditional_edges("quiz", should_continue, {"teacher": "teacher", "end": END})
-agent = graph.compile()
+agent = graph.compile(checkpointer= checkpointer)
 
 if __name__ == "__main__":
     """Load pdf to ChromaDB"""

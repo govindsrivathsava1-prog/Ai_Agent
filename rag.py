@@ -1,10 +1,12 @@
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter  # type: ignore[reportMissingImports]
 from langchain_community.vectorstores import Chroma
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from langchain_openai import OpenAIEmbeddings
 import os
+from dotenv import load_dotenv
 
 CHROMA_DB = "chroma_db"
+load_dotenv()
 def load_pdf_to_chroma(pdf_path: str):
     print(f"loading PDF: {pdf_path} into ChromaDB")
 
@@ -18,7 +20,11 @@ def load_pdf_to_chroma(pdf_path: str):
     print(f"Split into {len(chunks)} chunks")
 
     #Embed and store into ChromaDB
-    embeddings = GoogleGenerativeAIEmbeddings(model = "models/text-embedding-004")
+    embeddings = OpenAIEmbeddings(
+    model="text-embedding-3-small",
+    api_key=os.environ.get("OPENAI_API_KEY")
+)
+    # embeddings = GoogleGenerativeAIEmbeddings(model = "models/gemini-embedding-001", google_api_key=os.environ.get("GEMINI_API_KEY"))
     vectorstore = Chroma.from_documents(chunks, embeddings, persist_directory=CHROMA_DB)
     print(f"stored in ChromaDB at ./{CHROMA_DB}")
 
@@ -26,7 +32,11 @@ def load_pdf_to_chroma(pdf_path: str):
 
 def get_vectorstore():
     
-    embeddings = GoogleGenerativeAIEmbeddings(model = "models/text-embedding-004")
+    embeddings = OpenAIEmbeddings(
+    model="text-embedding-3-small",
+    api_key=os.environ.get("OPENAI_API_KEY")
+)
+    # embeddings = GoogleGenerativeAIEmbeddings(model = "models/gemini-embedding-001", google_api_key=os.environ.get("GEMINI_API_KEY"))
 
     return Chroma(persist_directory=CHROMA_DB, embedding_function=embeddings)
 

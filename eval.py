@@ -24,7 +24,7 @@ def evaluate_lesson(topic: str, lesson_title: str, teaching: str, question: str)
              - difficulty: Is the quiz question appropriately challenging? (not too easy, not too hard).
              Reply ONLY with valid JSON, no extra text:
              {{"clarity":N, "accuracy":N, "difficulty":N, "reason": "one sentence explanation"}}"""
-
+ 
     try:
         response = judge.invoke(prompt).content
         clean = response.strip().replace("```json", "").replace("```", "").strip()

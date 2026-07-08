@@ -1,7 +1,7 @@
 # Personal AI Study Agent
-> A stateful, multi-node AI tutor built with LangGraph and Google Gemini.
+> A stateful, multi-node AI tutor built with LangGraph and OpenAI GPT-4o.
 > Teaches any topic, quizzes you, and remembers your progress across sessions.
-> Exposed both as a terminal app and as a FastAPI backend that drives the same compiled LangGraph graph.
+> Exposed both as a Streamlit web app, a terminal app, and a FastAPI backend that drives the same compiled LangGraph graph.
 
 ## Demo — terminal
 
@@ -74,19 +74,21 @@ The graph is compiled once in `agent.py` with a `MemorySaver` checkpointer. The 
 | Feature | Implementation |
 |---|---|
 | Multi-node agent | LangGraph `StateGraph` with typed state (`StudyState`) |
-| RAG pipeline | ChromaDB + Gemini embeddings |
+| RAG pipeline | ChromaDB + OpenAI embeddings (`text-embedding-3-small`) |
 | LLM-as-judge eval | Scores clarity, accuracy, difficulty per lesson |
 | Session memory | JSON persistence with 70% pass threshold |
 | Progress tracking | Scores, dates, mastered topics across sessions |
+| Streamlit UI | Full web interface driving the same agent nodes |
 | Real-time API | FastAPI driving the actual LangGraph graph via `interrupt()` / `Command(resume=...)` — not a re-implementation |
-| Graceful fallback | RAG miss -> Gemini knowledge; eval fail -> agent continues |
+| Graceful fallback | RAG miss -> GPT knowledge; eval fail -> agent continues |
 
 ## Tech Stack
 
 - **Framework**: LangGraph (1.x), LangChain
+- **UI**: Streamlit
 - **API**: FastAPI, Uvicorn
-- **LLM**: Google Gemini (gemini-2.0-flash)
-- **Embeddings**: Gemini text-embedding-004
+- **LLM**: OpenAI GPT-4o / GPT-4o-mini (eval judge)
+- **Embeddings**: OpenAI `text-embedding-3-small`
 - **Vector store**: ChromaDB (local)
 - **Language**: Python 3.11
 
@@ -102,13 +104,16 @@ After each quiz, a routing function checks the lesson index against the lesson c
 The early version of the API called individual node functions directly from FastAPI endpoints, which meant the orchestration logic (the loop, the conditional routing) lived in two places — once in the graph's edges, once in the API's request handling. Using `interrupt()` and `Command(resume=...)` means there is exactly one place the control flow is defined: the compiled graph. The API layer is pure plumbing — it never decides what runs next, it only feeds answers back in and reports what the graph paused on.
 
 **Why LLM-as-judge?**
-Manual evaluation doesn't scale. Using Gemini to score its own outputs on clarity, accuracy and difficulty gives automated quality signals across every session, surfacing regressions without human review.
+Manual evaluation doesn't scale. Using GPT-4o-mini to score outputs on clarity, accuracy and difficulty gives automated quality signals across every session, surfacing regressions without human review.
 
 **Why JSON over a database?**
 For a single-user local agent, JSON is zero-infrastructure and inspectable. The memory module is designed so swapping to Postgres requires changing only `load_progress()` and `save_progress()`.
 
 **Why `MemorySaver` and not a persistent checkpointer?**
 `MemorySaver` keeps paused graph state in RAM for the lifetime of the server process — sufficient for a single-user demo. A production deployment would swap in `SqliteSaver` or `PostgresSaver` so in-progress sessions survive a server restart.
+
+**Why migrate from Gemini to OpenAI?**
+OpenAI's function calling, structured output, and embedding APIs are more stable and widely supported across the LangChain/LangGraph ecosystem. `text-embedding-3-small` also offers better price-to-quality than Gemini's embedding models for RAG at this scale.
 
 ## Results
 
@@ -129,7 +134,7 @@ pip install -r requirements.txt
 
 Create a `.env` file:
 ```
-GEMINI_API_KEY=your-key-from-aistudio.google.com
+OPENAI_API_KEY=your-key-from-platform.openai.com
 ```
 
 Optionally add a PDF to use RAG:
@@ -139,6 +144,12 @@ python agent.py
 ```
 
 ## Running it
+
+**Streamlit UI (recommended):**
+```bash
+streamlit run app.py
+```
+Then open `http://localhost:8501` in your browser.
 
 **Terminal mode:**
 ```bash
@@ -172,11 +183,12 @@ python test_client.py
 ```
 study-agent/
 |-- agent.py         # LangGraph agent: state, nodes, interrupt-based quiz_node, compiled graph
-|-- api.py            # FastAPI wrapper around agent.invoke() / Command(resume=...) - no business logic
-|-- test_client.py    # Minimal scripted client exercising the full API loop
-|-- memory.py         # Session persistence and progress tracking
-|-- rag.py             # PDF loading, ChromaDB, semantic search
-|-- eval.py            # LLM-as-judge evaluation pipeline
+|-- app.py           # Streamlit web UI driving agent nodes directly
+|-- api.py           # FastAPI wrapper around agent.invoke() / Command(resume=...) - no business logic
+|-- test_client.py   # Minimal scripted client exercising the full API loop
+|-- memory.py        # Session persistence and progress tracking
+|-- rag.py           # PDF loading, ChromaDB, semantic search
+|-- eval.py          # LLM-as-judge evaluation pipeline
 |-- requirements.txt
-`-- .env              # API keys (not committed)
+`-- .env             # API keys (not committed)
 ```

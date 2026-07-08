@@ -191,4 +191,8 @@ study-agent/
 |-- eval.py          # LLM-as-judge evaluation pipeline
 |-- requirements.txt
 `-- .env             # API keys (not committed)
+<<<<<<< HEAD
 ```
+=======
+```
+>>>>>>> 3b28b540af985e662a5b394abaa0fa3354d4f54d

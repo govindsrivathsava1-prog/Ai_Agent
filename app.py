@@ -87,7 +87,7 @@ if page == "📚 Study":
 
         # Progress bar
         st.progress((idx) / total, text=f"Lesson {idx + 1} of {total}")
-        st.subheader(f"📖 Lesson {idx + 1}: {lessons[idx]}")  # BUG FIX 1: removed st.chat_message(lessons)
+        st.subheader(f"📖 Lesson {idx + 1}: {lessons[idx]}")  
 
         # Generate lesson content once per lesson index — cache in session_state
         if idx not in st.session_state.teachings:
@@ -181,7 +181,7 @@ if page == "📚 Study":
 
             st.divider()
 
-            # BUG FIX 4: Next button is OUTSIDE submit block — always visible after submit
+            
             if idx + 1 < total:
                 if st.button("Next lesson →", key=f"next_{idx}"):
                     st.session_state.lesson_idx += 1
@@ -194,7 +194,7 @@ if page == "📚 Study":
     # ── SCREEN 3: Session complete ────────────
     elif st.session_state.stage == "done":
         topic  = st.session_state.topic
-        score  = st.session_state.score          # BUG FIX 3: already an int
+        score  = st.session_state.score          
         total  = len(st.session_state.lessons)
         pct    = int(score / total * 100) if total > 0 else 0
         passed = pct >= 70

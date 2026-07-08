@@ -1,0 +1,272 @@
+[
+  {
+    "clarity": 5,
+    "accuracy": 5,
+    "difficulty": 4,
+    "reason": "The lesson provides a clear and accurate introduction to machine learning concepts, and the quiz question is appropriately challenging for beginners.",
+    "topic": "machine learning",
+    "lesson_title": "Introduction to Machine Learning",
+    "overall": 4.7,
+    "date": "2026-07-08"
+  },
+  {
+    "clarity": 5,
+    "accuracy": 5,
+    "difficulty": 4,
+    "reason": "The lesson clearly explains the concepts of supervised and unsupervised learning accurately, while the quiz question is appropriately challenging for beginners.",
+    "topic": "machine learning",
+    "lesson_title": "Supervised vs. Unsupervised Learning",
+    "overall": 4.7,
+    "date": "2026-07-08"
+  },
+  {
+    "clarity": 4,
+    "accuracy": 5,
+    "difficulty": 3,
+    "reason": "The lesson is clear and accurate, but the quiz question could be more challenging to better assess understanding.",
+    "topic": "machine learning",
+    "lesson_title": "Evaluating Machine Learning Models",
+    "overall": 4.0,
+    "date": "2026-07-08"
+  },
+  {
+    "clarity": 4,
+    "accuracy": 5,
+    "difficulty": 3,
+    "reason": "The lesson provides a clear and accurate introduction to machine learning concepts, but the quiz question could be slightly more specific to enhance understanding.",
+    "topic": "machine learning",
+    "lesson_title": "Introduction to Machine Learning Concepts",
+    "overall": 4.0,
+    "date": "2026-07-08"
+  },
+  {
+    "clarity": 4,
+    "accuracy": 5,
+    "difficulty": 3,
+    "reason": "The explanation is mostly clear and correct, though some terms may still be challenging for complete beginners.",
+    "topic": "deeplearning",
+    "lesson_title": "Introduction to Neural Networks",
+    "overall": 4.0,
+    "date": "2026-07-08"
+  },
+  {
+    "clarity": 4,
+    "accuracy": 5,
+    "difficulty": 3,
+    "reason": "The lesson content is generally clear and accurate, but the quiz question could be slightly more challenging.",
+    "topic": "deeplearning",
+    "lesson_title": "Convolutional Neural Networks Basics",
+    "overall": 4.0,
+    "date": "2026-07-08"
+  },
+  {
+    "clarity": 4,
+    "accuracy": 4,
+    "difficulty": 3,
+    "reason": "The lesson provides a clear introduction to generative AI concepts, but some terms may need further explanation for complete beginners.",
+    "topic": "genai",
+    "lesson_title": "Introduction to Generative AI",
+    "overall": 3.7,
+    "date": "2026-07-08"
+  },
+  {
+    "clarity": 4,
+    "accuracy": 5,
+    "difficulty": 3,
+    "reason": "The explanation is mostly clear for beginners, the content is accurate, and the quiz question is of moderate difficulty.",
+    "topic": "genai",
+    "lesson_title": "Understanding Neural Networks",
+    "overall": 4.0,
+    "date": "2026-07-08"
+  },
+  {
+    "clarity": 4,
+    "accuracy": 5,
+    "difficulty": 3,
+    "reason": "The lesson is mostly clear and accurate, but could benefit from simpler language for complete beginners, and the quiz question is a moderate level of difficulty.",
+    "topic": "genai",
+    "lesson_title": "Applications of GenAI in Industry",
+    "overall": 4.0,
+    "date": "2026-07-08"
+  },
+  {
+    "clarity": 4,
+    "accuracy": 5,
+    "difficulty": 3,
+    "reason": "The lesson provides a clear and accurate explanation of generative AI, though some terms may still be complex for absolute beginners.",
+    "topic": "genai",
+    "lesson_title": "Introduction to Generative AI",
+    "overall": 4.0,
+    "date": "2026-07-08"
+  },
+  {
+    "clarity": 4,
+    "accuracy": 5,
+    "difficulty": 3,
+    "reason": "The lesson provides a clear and accurate introduction to generative AI, but the quiz question is moderately challenging for beginners.",
+    "topic": "genai",
+    "lesson_title": "Introduction to Generative AI",
+    "overall": 4.0,
+    "date": "2026-07-08"
+  },
+  {
+    "clarity": 4,
+    "accuracy": 5,
+    "difficulty": 3,
+    "reason": "The explanation is mostly clear and accurate, though some terms may still be complex for beginners.",
+    "topic": "genai",
+    "lesson_title": "Techniques in Generative Models",
+    "overall": 4.0,
+    "date": "2026-07-08"
+  },
+  {
+    "clarity": 4,
+    "accuracy": 5,
+    "difficulty": 3,
+    "reason": "The lesson provides a clear overview of generative AI and its applications, with accurate information, and the quiz question is moderately challenging for beginners.",
+    "topic": "genai",
+    "lesson_title": "Applications of Generative AI",
+    "overall": 4.0,
+    "date": "2026-07-08"
+  },
+  {
+    "clarity": 4,
+    "accuracy": 5,
+    "difficulty": 3,
+    "reason": "The lesson is mostly clear and accurate, though it could be simplified further for beginners; the quiz question is moderately challenging.",
+    "topic": "genai",
+    "lesson_title": "Introduction to Generative AI",
+    "overall": 4.0,
+    "date": "2026-07-08"
+  },
+  {
+    "clarity": 4,
+    "accuracy": 5,
+    "difficulty": 3,
+    "reason": "The lesson is mostly clear and accurate, but the quiz question may require a bit more depth for a complete understanding.",
+    "topic": "genai",
+    "lesson_title": "Applications of Generative Models",
+    "overall": 4.0,
+    "date": "2026-07-08"
+  },
+  {
+    "clarity": 4,
+    "accuracy": 5,
+    "difficulty": 3,
+    "reason": "The lesson is mostly clear and accurate, but some terms may require further simplification for complete beginner understanding.",
+    "topic": "genai",
+    "lesson_title": "Introduction to Generative AI",
+    "overall": 4.0,
+    "date": "2026-07-08"
+  },
+  {
+    "clarity": 4,
+    "accuracy": 5,
+    "difficulty": 3,
+    "reason": "The lesson is mostly clear and accurate, but slight improvements in wording could enhance comprehension for beginners.",
+    "topic": "genai",
+    "lesson_title": "Key Techniques in GenAI",
+    "overall": 4.0,
+    "date": "2026-07-08"
+  },
+  {
+    "clarity": 4,
+    "accuracy": 5,
+    "difficulty": 3,
+    "reason": "The lesson provides a clear and accurate introduction to generative AI, but the quiz question may require some prior knowledge.",
+    "topic": "genai",
+    "lesson_title": "Introduction to Generative AI",
+    "overall": 4.0,
+    "date": "2026-07-08"
+  },
+  {
+    "clarity": 4,
+    "accuracy": 5,
+    "difficulty": 3,
+    "reason": "The lesson provides clear definitions and examples, accurately describes techniques, and poses a moderately challenging quiz question.",
+    "topic": "genai",
+    "lesson_title": "Key Techniques in GenAI",
+    "overall": 4.0,
+    "date": "2026-07-08"
+  },
+  {
+    "clarity": 4,
+    "accuracy": 5,
+    "difficulty": 3,
+    "reason": "The lesson is generally clear and accurate, but the quiz question could be slightly more specific to enhance understanding.",
+    "topic": "genai",
+    "lesson_title": "Introduction to Generative AI",
+    "overall": 4.0,
+    "date": "2026-07-08"
+  },
+  {
+    "clarity": 4,
+    "accuracy": 5,
+    "difficulty": 3,
+    "reason": "The explanation is mostly clear and accurate, but some beginners may need additional context on the techniques mentioned.",
+    "topic": "genai",
+    "lesson_title": "Key Techniques in GenAI",
+    "overall": 4.0,
+    "date": "2026-07-08"
+  },
+  {
+    "clarity": 4,
+    "accuracy": 5,
+    "difficulty": 3,
+    "reason": "The lesson provides a clear explanation of generative models and embeddings, is factually correct, and the quiz question is of moderate difficulty for the intended audience.",
+    "topic": "genai",
+    "lesson_title": "Applications of Generative Models",
+    "overall": 4.0,
+    "date": "2026-07-08"
+  },
+  {
+    "clarity": 5,
+    "accuracy": 5,
+    "difficulty": 3,
+    "reason": "The lesson is clear and accurate, but the quiz question is fairly straightforward and may not challenge all learners.",
+    "topic": "python",
+    "lesson_title": "Introduction to Python Basics",
+    "overall": 4.3,
+    "date": "2026-07-08"
+  },
+  {
+    "clarity": 4,
+    "accuracy": 5,
+    "difficulty": 3,
+    "reason": "The lesson provides a clear explanation of control structures and functions, is factually correct, and the quiz question is a straightforward assessment of understanding.",
+    "topic": "python",
+    "lesson_title": "Control Structures and Functions",
+    "overall": 4.0,
+    "date": "2026-07-08"
+  },
+  {
+    "clarity": 4,
+    "accuracy": 5,
+    "difficulty": 3,
+    "reason": "The explanation is mostly clear and accurate, but could benefit from more examples or context for absolute beginners.",
+    "topic": "for loops",
+    "lesson_title": "Introduction to For Loops",
+    "overall": 4.0,
+    "date": "2026-07-08"
+  },
+  {
+    "clarity": 4,
+    "accuracy": 5,
+    "difficulty": 3,
+    "reason": "The explanation is mostly clear for beginners, but could benefit from more examples.",
+    "topic": "for loops",
+    "lesson_title": "For Loop Syntax and Structure",
+    "overall": 4.0,
+    "date": "2026-07-08"
+  },
+  {
+    "clarity": 4,
+    "accuracy": 5,
+    "difficulty": 3,
+    "reason": "The explanation is mostly clear for beginners, accurately describes for loops, and the quiz question is of moderate difficulty.",
+    "topic": "for loops",
+    "lesson_title": "Practical Examples of For Loops",
+    "overall": 4.0,
+    "date": "2026-07-08"
+  }
+]

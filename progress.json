@@ -1,0 +1,35 @@
+{
+    "completed_topics": [
+        "explain KNN algorithm",
+        "explain what is amchine learning",
+        "machine learning"
+    ],
+    "scores": {
+        "explain KNN algorithm": {
+            "score": 3,
+            "total": 3,
+            "date": "2026-07-03"
+        },
+        "explain what is amchine learning": {
+            "score": 3,
+            "total": 3,
+            "date": "2026-07-03"
+        },
+        "machine learning": {
+            "score": 3,
+            "total": 3,
+            "date": "2026-07-08"
+        },
+        "genai": {
+            "score": 0,
+            "total": 3,
+            "date": "2026-07-08"
+        },
+        "for loops": {
+            "score": 1,
+            "total": 3,
+            "date": "2026-07-08"
+        }
+    },
+    "total_sessions": 6
+}

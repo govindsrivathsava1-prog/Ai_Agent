@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from typing import TypedDict, List
 from langgraph.graph import StateGraph, END
 from langchain_openai import OpenAI
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_openai import ChatOpenAI
 from memory import load_progress, save_progress, show_progress, alread_mastered
 from rag import load_pdf_to_chroma, get_vectorstore, search_notes
 from eval import evaluate_lesson, save_eval, show_eval_summary
@@ -13,12 +13,12 @@ from langgraph.types import interrupt
 load_dotenv()
 checkpointer = MemorySaver()
 
-llm = ChatGoogleGenerativeAI(
-    google_api_key=os.environ.get("GEMINI_API_KEY"),
-    model = "gemini-2.0-flash",
-    temperature=0.7
-    )
-
+llm = ChatOpenAI(
+    model="gpt-4o-mini",
+    temperature=0.7,
+    api_key=os.environ.get("OPENAI_API_KEY")
+)
+print("using gpt model")
 class StudyState(TypedDict):
     topic: str
     lessons: List[str]
@@ -80,20 +80,27 @@ def quiz_node(state: StudyState) -> StudyState:
     lessons = state['lessons']
     current = state['current']
     lesson_title = lessons[current]
-    q_prompt = f"""Based on this lesson:{teaching} Write one short quiz question (one sentenc only)."""
+    q_prompt = f"""Based on this lesson:{teaching} Write one short quiz question (one sentenc only). Do not repeatthe same question"""
     question = llm.invoke(q_prompt).content
     state["question"] = question
-    #print(f"\nQuiz Question: {question}")
-    # user_answer = input("Your Answer: ")
-    user_answer = interrupt({"question": question})
+    print(f"\nQuiz Question: {question}")
+    user_answer = input("Your Answer: ")
+    # user_answer = interrupt({"question": question})
     state["user_answer"] = user_answer
     grade_prompt = f"""Question:{question} Student's answer: {user_answer}. Is this correct?. Reply with 'Correct' or 'Incorrect', then one sentence of feedback."""
+
     feedback = llm.invoke(grade_prompt).content
+    print(feedback)
     state["feedback"] = feedback
-    if "CORRECT" in feedback.upper():
+
+    first_word = feedback.strip().split()[0].upper()
+
+    if "CORRECT" == first_word.upper():
         state["score"] += 1
-        #print(f"\nFeedback: {feedback}")
+        print("correct")
+        print(f"\nFeedback: {feedback}")
     else:
+        print("wrong")
         #print(f"\nFeedback: {feedback}")
         state["score"] += 0
     
@@ -122,7 +129,8 @@ graph.set_entry_point("planner")
 graph.add_edge("planner", "teacher")
 graph.add_edge("teacher", "quiz")
 graph.add_conditional_edges("quiz", should_continue, {"teacher": "teacher", "end": END})
-agent = graph.compile(checkpointer= checkpointer)
+# agent = graph.compile(checkpointer= checkpointer)
+agent = graph.compile()
 
 if __name__ == "__main__":
     """Load pdf to ChromaDB"""
@@ -158,8 +166,8 @@ if __name__ == "__main__":
     print(initial_state)
 
 
+    # result = agent.invoke(initial_state, config = {"configurable": {"thread_id": "session-1"}})
     result = agent.invoke(initial_state)
-
 
     total_lessons = len(result["lessons"])
 
